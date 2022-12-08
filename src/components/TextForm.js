@@ -15,9 +15,12 @@ export default function TextForm(props) {
     )
 }
 
+TextForm.propTypes = {
+    textHeading: PropTypes.string.isRequired,
+    textAreaLabel: PropTypes.string.isRequired
+}
+
 TextForm.defaultProps = {
     textHeading: "Share with everyone",
     textAreaLabel: "Your thoughts ... 📢 🗨️"
 }
-
-// Your thoughts ... 📢 🗨️
