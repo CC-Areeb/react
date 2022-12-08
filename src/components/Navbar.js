@@ -36,9 +36,9 @@ Navbar.propTypes = {
 
 // Use this if there are no values passed  
 Navbar.defaultProps = {
-    title:'Set you title here',
-    home: 'Set you home link',
-    about: 'Set you about link'
+    title:'Text Flavorizer',
+    home: 'Home',
+    about: 'About'
 }
 
 export default Navbar;
