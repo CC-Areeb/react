@@ -1,15 +1,10 @@
-import './App.css';
-import bootstrap from 'bootstrap'
+import Navbar from "./Navbar";
 
 function App() {
-
-  let header = "My first react app !! 😄😄😄";
-
   return (
-    <>
-      
-    </>
+    <div className="App">
+      <Navbar></Navbar>
+    </div>
   );
 }
-
 export default App;

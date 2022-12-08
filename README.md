@@ -102,3 +102,58 @@ function App() {
 export default App;
 ```
 Notice that these `<>`  `</>` blank tags can allow you to have more than 1 root element tags inside the return parenthesis of a single stateless functional component
+
+
+## React Components
+When building react apps, it is better to use break down the whole project into parts or components and we can import them in other js files.
+
+below is a Navbar component which is in a stateless functional component
+```
+const Navbar = () => {
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="/">Text Flavorizer</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationBar" aria-controls="navigationBar" aria-expanded="false" aria-label="Toggle navigationBar">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navigationBar">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a className="nav-link text-dark" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link text-dark" href="/">About</a>
+                        </li>
+                    </ul>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    );
+}
+export default Navbar;
+```
+
+We can make this component once and use it where ever we want without repeating the same code over and over
+
+```
+import Navbar from "./Navbar";
+
+function App() {
+  return (
+    <div className="App">
+      <Navbar></Navbar>
+    </div>
+  );
+}
+export default App;
+```
+
++ `<Navbar></Navbar>` **OR** `<Navbar />` This is the syntax we use to call different components in other JS files.
++ When making your own component, make sure to name the file starts with a camel case character.
++ The component's function name and export name should be same and for better convention use the same name as the file name.
+ 
