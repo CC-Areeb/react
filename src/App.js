@@ -1,9 +1,13 @@
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
+      <Navbar 
+        title="Text Flavorizer"
+        about = "About flavors"
+        home = "Home "
+        />
     </div>
   );
 }
