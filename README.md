@@ -157,3 +157,64 @@ export default App;
 + When making your own component, make sure to name the file starts with a camel case character.
 + The component's function name and export name should be same and for better convention use the same name as the file name.
  
+## Props
+We can use props to dynamically pass in the values which makes reusing same component easy
+```
+const Navbar = (props) => {
+  return (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
+              <a className="navbar-brand" href="/">{props.title}</a>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationBar" aria-controls="navigationBar" aria-expanded="false" aria-label="Toggle navigationBar">
+                  <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navigationBar">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li className="nav-item">
+                          <a className="nav-link text-dark" aria-current="page" href="/">{props.home}</a>
+                      </li>
+                      <li className="nav-item">
+                          <a className="nav-link text-dark" href="/">{props.about}</a>
+                      </li>
+                  </ul>
+                  <form className="d-flex">
+                      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                      <button className="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+              </div>
+          </div>
+      </nav>
+  );
+}
+export default Navbar;
+```
+And in the root `App` component we can use this as
+
+```
+import Navbar from "./components/Navbar";
+
+function App() {
+  return (
+    <div className="App">
+      <Navbar 
+        title="Text Flavorizer"
+        about = "About flavors"
+        home = "Home "
+        />
+    </div>
+  );
+}
+export default App;
+```
++ When we make a component
++ `title` , `about` , `home` are the prop variable we have defined in the navbar component.
+
+We can use `propTypes` to define the type of the prop we are sending
+
+```
+Navbar.propTypes = {
+  title: PropTypes.string,
+  about: PropTypes.string
+}
+```
+This is going to check what data type you have sent by using a prop.
