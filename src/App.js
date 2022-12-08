@@ -1,13 +1,11 @@
 import Navbar from "./components/Navbar";
+import TextForm from "./components/TextForm";
 
 function App() {
   return (
     <div className="App">
-      <Navbar 
-        title="Text Flavorizer"
-        about = "About flavors"
-        home = "Home "
-        />
+      <Navbar/>
+      <TextForm/>
     </div>
   );
 }
