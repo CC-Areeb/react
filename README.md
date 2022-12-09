@@ -8,7 +8,7 @@ Official documetation site: **https://reactjs.org/docs/getting-started.html**
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Stateless Functional Component
+## Stateless Functional Component
 This is a basic example of a statelss functional component where you make a function and return an HTML template using JSX
 ```
 function App() {
@@ -102,6 +102,128 @@ function App() {
 export default App;
 ```
 Notice that these `<>`  `</>` blank tags can allow you to have more than 1 root element tags inside the return parenthesis of a single stateless functional component
+
+## React Functional components
+These are alternatives to Stateless Functional Components.
+
+```
+import React from 'react'
+
+export default function TextForm() {
+  return (
+      <div className="TextForm">TextForm</div>
+  )
+}
+```
+The working is same but a slight change in the syntax
+```
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
+export default function TextForm(props) {
+
+    // for the input text area
+    const [text, setText] = useState();
+    const handleChange = (event) => {
+        setText(event.target.value);
+    }
+
+    // Upper case
+    const [upperCase, setUpperCase] = useState();
+    const UpperCase = () => {
+        let upperCase = text.toUpperCase();
+        setUpperCase(upperCase);
+    }
+
+    // Lower case
+    const [lowerCase, setLowerCase] = useState();
+    const LowerCase = () => {
+        let lowerCase = text.toLowerCase();
+        setLowerCase(lowerCase);
+    }
+
+    // Length of text
+    const [length, setLength] = useState();
+    const StringLength = () => {
+        let length = text.length;
+        setLength(length);
+    }
+
+    return (
+        <>
+            <h1 className="textArea text-center text-primary">{props.textHeading}</h1>
+            <div className="TextForm container my-4">
+                <div className="my-4">
+                    <label htmlFor="inputText" className="form-label my-3 fs-3">{props.textAreaLabel}</label>
+                    <textarea className="form-control" placeholder="Your text ..." id="inputText" rows="10" onChange={handleChange}></textarea>
+                </div>
+                <div className="row">
+                    <div className="col text-center">
+                        <p className="aboutFlavor fs-4 text-secondary">{props.aboutFlavor}</p>
+                        <button className="btn btn-outline-primary fs-4 mx-1" onClick={UpperCase}>Upper case</button>
+                        <button className="btn btn-outline-success fs-4 mx-1" onClick={LowerCase}>Lower case</button>
+                        <button className="btn btn-outline-success fs-4 mx-1" onClick={StringLength}>Length of text</button>
+                    </div>
+                </div>
+            </div>
+            <div className="output container">
+                <div className="row">
+                    <div className="col">
+                        <p className="text-center fs-1">{upperCase}</p>
+                        <p className="text-center fs-1">{lowerCase}</p>
+                        <p className="text-center fs-1">{length}</p>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+TextForm.propTypes = {
+    textHeading: PropTypes.string.isRequired,
+    textAreaLabel: PropTypes.string.isRequired
+}
+
+TextForm.defaultProps = {
+    textHeading: "Share with everyone",
+    textAreaLabel: "Enter your text to flavorise",
+    aboutFlavor: "Change your text 👇"
+}
+```
+You can see there are a couple of events used 
++ `onChange` which is a listening event used for detecting any changes.
++ `onClick` this will work after a button clicking event has occured.
+
+### React hooks
++ `{ useState }` we use this to use the useState hook provided by React to manage and maintain states of elements in the documetation
+
+### Break down
+
+```
+const [text, setText] = useState();
+const handleChange = (event) => {
+  setText(event.target.value);
+}
+
+
+const [upperCase, setUpperCase] = useState();
+const UpperCase = () => {
+  let upperCase = text.toUpperCase();
+  setUpperCase(upperCase);
+}
+```
++ this block of code is used so that we can use the useState's array destructuring properties.
++ the first parameter consists of the variable name and the second parameter consists of the name of the function which will be used for event changes and state management.
++ next we have a bracket function which has the same name as the second parameter of the useState.
++ this function is responsible for any chanegs in event or detecting events like `onChange` or `onClick`.
++ another useState is used so that the text from the top can be used in the second useState.
++ we can make a blockscope variable and equal it to the first useState `text` variable.
++ next we can use the `setUpperCase` to return the changed or updated value.
++ we can access this new updated value from `upperCase` variable and use in the JSX to show output
+```
+<p className="text-center fs-1">{upperCase}</p>
+```
++ this `{upperCase}` is how we can output JS variables in React.
 
 
 ## React Components
@@ -214,7 +336,25 @@ We can use `propTypes` to define the type of the prop we are sending
 ```
 Navbar.propTypes = {
   title: PropTypes.string,
+  home: PropTypes.string,
   about: PropTypes.string
 }
 ```
-This is going to check what data type you have sent by using a prop.
+
+Add the `.isRequired` and the you will always be required to pass in the prop value
+```
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired,
+  home: PropTypes.string.isRequired,
+  about: PropTypes.string.isRequired
+}
+```
+
+We can also use `defaultProps` to assignn default values to our props
+```
+Navbar.defaultProps = {
+  title:'Set you title here',
+  home: 'Set you home link',
+  about: 'Set you about link'
+}
+```
