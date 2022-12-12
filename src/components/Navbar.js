@@ -2,16 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 const Navbar = (props) => {
-    let defaultStyle = {
-        color : 'rgb(242, 242, 242)',
-        backgroundColor : 'rgb(77, 77, 77)',
-    }
-
-    const [theme, setTheme] = useState(defaultStyle);
-    const toggleTheme = () => {
-        
-    }
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div className="container-fluid">
@@ -31,7 +21,6 @@ const Navbar = (props) => {
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-light me-2" type="submit">Search</button>
-                        <button className="btn btn-outline-light me-2 fs-3" onClick={toggleTheme}>🌓</button>
                     </form>
                 </div>
             </div>
