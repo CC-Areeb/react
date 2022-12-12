@@ -56,49 +56,66 @@ export default function TextForm(props) {
         setCleanContent(cleaner);
     }
 
+    // New styles
+    let textAreaStyle = {
+        backgroundColor: props.mode === 'light' ? '#f2f2f2' : 'white',
+    }
+
+    let otherComponentStyles = {
+        color: props.mode === 'dark' ? '#ffffff' : 'black',
+    }
+
+    let buttonStyles = {
+        // color: props.mode === 'dark' ? 'white' : 'white',
+    }
+
+    let headingStyles = {
+        color: props.mode === 'dark' ? '#ffffff' : 'black',
+    }
+
     return (
         <>
-            <h1 className="textArea text-center text-primary">{props.textHeading}</h1>
-            <div className="TextForm container my-4">
+            <h1 className="textArea text-center" style={otherComponentStyles}>{props.textHeading}</h1>
+            <div className="TextForm container my-4" style={otherComponentStyles}>
                 <div className="my-4">
                     <label htmlFor="inputText" className="form-label my-3 fs-3">{props.textAreaLabel}</label>
-                    <textarea className="form-control" placeholder="Your text ..." id="inputText" rows="10" onChange={handleChange}></textarea>
+                    <textarea className="form-control" placeholder="Your text ..." id="inputText" rows="10" onChange={handleChange} style={textAreaStyle}></textarea>
                 </div>
                 <div className="row">
                     <div className="col text-center">
-                        <p className="aboutFlavor fs-4 my-1 text-secondary">{props.aboutText}</p>
-                        <button className="btn btn-outline-primary fs-4 mx-1 my-1" onClick={UpperCase}>Upper case</button>
-                        <button className="btn btn-outline-success fs-4 mx-1 my-1" onClick={LowerCase}>Lower case</button>
-                        <button className="btn btn-outline-secondary fs-4 mx-1 my-1" onClick={StringLength}>Length of characters</button>
-                        <button className="btn btn-outline-dark fs-4 mx-1 my-1" onClick={WordCounter}>Number of words</button>
-                        <button className="btn btn-light fs-4 mx-1 my-1" onClick={CleanContent}>Clean content</button>
+                        <p className="aboutFlavor fs-4 my-1">{props.aboutText}</p>
+                        <button className="btn fs-4 mx-1 my-1 btn btn-success" style={buttonStyles} onClick={UpperCase}>Upper case</button>
+                        <button className="btn fs-4 mx-1 my-1 btn btn-success" style={buttonStyles} onClick={LowerCase}>Lower case</button>
+                        <button className="btn fs-4 mx-1 my-1 btn btn-success" style={buttonStyles} onClick={StringLength}>Length of characters</button>
+                        <button className="btn fs-4 mx-1 my-1 btn btn-success" style={buttonStyles} onClick={WordCounter}>Number of words</button>
+                        <button className="btn fs-4 mx-1 my-1 btn btn-success" style={buttonStyles} onClick={CleanContent}>Clean content</button>
                     </div>
                 </div>
             </div>
-            <div className="output container">
+            <div className="output container" style={headingStyles}>
                 <div className="row">
                     <div className="col my-4 py-4">
-                        <h5 className="text-primary">Upper case content</h5>
+                        <h5 className="">Upper case content</h5>
                         <p className="">{upperCase}</p>
                         <hr />
 
-                        <h5 className="text-success">Lower case content</h5>
+                        <h5 className="">Lower case content</h5>
                         <p className="">{lowerCase}</p>
                         <hr />
 
-                        <h5 className="text-warning">Total number of characters</h5>
+                        <h5 className="">Total number of characters</h5>
                         <p className="">{length}</p>
                         <hr />
 
-                        <h5 className="text-danger">Total word count</h5>
+                        <h5 className="">Total word count</h5>
                         <p className="">{wordCount}</p>
                         <hr />
 
-                        <h5 className="text-secondary">Preview your content</h5>
-                        <p className="">{text}</p>
+                        <h5 className="">Preview your content</h5>
+                        <p className="">{text !== '' ? text : "Enter text to preview"}</p>
                         <hr />
 
-                        <h5 className="text-dark">Only text content</h5>
+                        <h5 className="">Only text content</h5>
                         <p className="">{cleanContent}</p>
                         <hr />
                     </div>
@@ -108,7 +125,7 @@ export default function TextForm(props) {
             <div className="container my-4">
                 <div className="row">
                     <div className="col text-center">
-                        <button className="btn btn-outline-danger fs-4" onClick={RemoveAllContent}>Clear content</button>
+                        <button className="btn btn-danger fs-4" onClick={RemoveAllContent}>Clear content</button>
                     </div>
                 </div>
             </div>
