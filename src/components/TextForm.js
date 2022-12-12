@@ -19,6 +19,7 @@ export default function TextForm(props) {
         setUpperCase(removeAll);
         setWordCount(removeAll);
         setCleanContent(removeAll);
+        props.showAlert("All content removed", "warning");
     }
 
     // Upper case
@@ -26,6 +27,7 @@ export default function TextForm(props) {
     const UpperCase = () => {
         let upperCase = text.toUpperCase();
         setUpperCase(upperCase);
+        props.showAlert("Converted to upper case", "success");
     }
 
     // Lower case
@@ -33,6 +35,7 @@ export default function TextForm(props) {
     const LowerCase = () => {
         let lowerCase = text.toLowerCase();
         setLowerCase(lowerCase);
+        props.showAlert("Converted to lower case", "success");
     }
 
     // Length of characters
@@ -40,6 +43,7 @@ export default function TextForm(props) {
     const StringLength = () => {
         let length = text.length;
         setLength(length);
+        props.showAlert("Your results are ready", "success");
     }
 
     // Word count
@@ -47,6 +51,7 @@ export default function TextForm(props) {
     const WordCounter = () => {
         let words = text.split(" ").length;
         setWordCount(words);
+        props.showAlert("Words counted", "success");
     }
 
     // Remove special characters
@@ -54,6 +59,7 @@ export default function TextForm(props) {
     const CleanContent = () => {
         let cleaner = text.replace(/[^A-Za-z]/g, ' ');
         setCleanContent(cleaner);
+        props.showAlert("Removed all special characters", "warning");
     }
 
     // New styles
@@ -111,8 +117,8 @@ export default function TextForm(props) {
                         <p className="">{wordCount}</p>
                         <hr />
 
-                        <h5 className="">Preview your content</h5>
-                        <p className="">{text !== '' ? text : "Enter text to preview"}</p>
+                        <h5 className="">Enter text to preview</h5>
+                        <p className="">{text}</p>
                         <hr />
 
                         <h5 className="">Only text content</h5>
