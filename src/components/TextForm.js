@@ -66,12 +66,12 @@ export default function TextForm(props) {
                 </div>
                 <div className="row">
                     <div className="col text-center">
-                        <p className="aboutFlavor fs-4 text-secondary">{props.aboutText}</p>
-                        <button className="btn btn-outline-primary fs-4 mx-1" onClick={UpperCase}>Upper case</button>
-                        <button className="btn btn-outline-success fs-4 mx-1" onClick={LowerCase}>Lower case</button>
-                        <button className="btn btn-outline-secondary fs-4 mx-1" onClick={StringLength}>Length of characters</button>
-                        <button className="btn btn-outline-info fs-4 mx-1" onClick={WordCounter}>Number of words</button>
-                        <button className="btn btn-outline-info fs-4 mx-1" onClick={CleanContent}>Clean content</button>
+                        <p className="aboutFlavor fs-4 my-1 text-secondary">{props.aboutText}</p>
+                        <button className="btn btn-outline-primary fs-4 mx-1 my-1" onClick={UpperCase}>Upper case</button>
+                        <button className="btn btn-outline-success fs-4 mx-1 my-1" onClick={LowerCase}>Lower case</button>
+                        <button className="btn btn-outline-secondary fs-4 mx-1 my-1" onClick={StringLength}>Length of characters</button>
+                        <button className="btn btn-outline-dark fs-4 mx-1 my-1" onClick={WordCounter}>Number of words</button>
+                        <button className="btn btn-light fs-4 mx-1 my-1" onClick={CleanContent}>Clean content</button>
                     </div>
                 </div>
             </div>
