@@ -5,7 +5,6 @@ function Alert(props) {
     const firstLetterCapital = (word) => {
         const newWord = word.toLowerCase();
         return newWord.charAt(0).toUpperCase() + newWord.slice(1);
-
     }
 
     return (
