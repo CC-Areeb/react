@@ -358,3 +358,130 @@ Navbar.defaultProps = {
   about: 'Set you about link'
 }
 ```
+
+## Template literals for bootstrap classes
+We can dynamically change the bootstrap classes by using template literals for a light and dark mode as shown below
+```
+<nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} sticky-top`}>
+    <div className="container-fluid">
+        <a className={`navbar-brand text-${props.textMode}`} href="/">{props.title}</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationBar" aria-controls="navigationBar" aria-expanded="false" aria-label="Toggle navigationBar">
+            <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navigationBar">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                    <a className={`nav-link text-${props.textMode}`} aria-current="page" href="/">{props.home}</a>
+                </li>
+                <li className="nav-item">
+                    <a className={`nav-link text-${props.textMode}`} href="/">{props.about}</a>
+                </li>
+            </ul>
+            <form className="d-flex">
+                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button className={`btn btn-outline-${props.textMode} me-2`} type="submit">Search</button>
+            </form>
+            <label htmlFor="" className={`text-${props.textMode} fs-3 mx-3`}>🌞</label>
+            <div className="form-check form-switch mx-4">
+                <input className="form-check-input fs-3" onClick={props.switchTheme} type="checkbox" role="switch" id="themeSwitch"/>
+                <label className={`form-check-label fs-3 text-${props.textMode}`} htmlFor="">🌑</label>
+            </div>
+        </div>
+    </div>
+</nav>
+```
+## Breakdown
++ first we converted the bootstrap classes as javascript template literals by adding `{ }` and adding the back-ticks ` `` ` .
++ now we can use the `$` sign for placing variables inside the string.
++ we used props as the main logic is inside the `App.js` file.
++ 🌞 , 🌑 these are just emojis that are available on vscode extensions
++ Inside `App.js`
+
+```
+const [theme, setTheme] = useState('light');
+const [text, setText] = useState('dark');
+
+const switchTheme = () => {
+  if (theme === 'light') {
+    setTheme('dark');
+    setText('light');
+    document.body.style.backgroundColor = '#404040';
+    showAlert("dark mode activated", "success")
+  } else {
+    setTheme('light');
+    setText('dark');
+    document.body.style.backgroundColor = '#fff';
+    showAlert("light mode activated", "success");
+  }
+}
+```
++ since the `Navbar.js` is using props as the parameter so we can pass in variables from different files as props.
++ we can access these variables by using `props.` and the name of variable after the dot.
++ example shown below
+
+```
+<Navbar 
+  mode={theme}
+  switchTheme={switchTheme}
+  textMode={text}
+/>
+```
+
+Inside `Navbar.js`
+```
+<form className="d-flex">
+  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+  <button className={`btn btn-outline-${props.textMode} me-2`} type="submit">Search</button>
+</form>
+```
+
+## Breakdown
++ the name of the variable, `textMode={text}` , is to be used as prop inside the other files `props.textMode` .
++ the variable has the data which is sent from the `useState` and we use the variable as the prop.
+
+
+## Making an object
+We can make objects and pass it in the `useState` functions as its arguments.
+```
+const [alert, setAlert] = useState(null);
+
+const showAlert = (message, type) => {
+  let alertObj = {
+    message: message,
+    type: type
+  }
+setAlert(alertObj);
+```
+## Breakdown
++ We can initialize any `useState` with null as well.
++ `alertObj` this is the object that was made so that we can use this in the our alert function component.
++ this object takes in 2 arguments when invoked.
+
+
+## React function export components
+
+The code snippet returns a function which contains JSX such as an alert.  
+```
+import React from 'react'
+
+function Alert(props) {
+  const firstLetterCapital = (word) => {
+    const newWord = word.toLowerCase();
+    return newWord.charAt(0).toUpperCase() + newWord.slice(1);
+  }
+
+  return (
+    props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+      <strong>{firstLetterCapital(props.alert.type)}</strong>: {props.alert.message}
+    </div>
+  )
+}
+
+export default Alert
+```
+
+## Breakdown 
++ `function Alert` this is the name of the functional export component which is returning a prop
++ `props.alert &&` since in the `App.js` the alert object is null at the start so the props cannot be loaded and hence throws an error, to counter this we can provide a condition that if the prop is empty then do not load it.
++ When conbined with the JSX, the first condition has to be `true` to render the JSX otherwise there will be no rendering.
++ `export default Alert` is used so that it can be imported in other react files.
