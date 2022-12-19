@@ -3,6 +3,7 @@ import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from './components/Alert';
+import Register from "./components/Register";
 
 function App() {
 
@@ -33,26 +34,24 @@ function App() {
       document.body.style.backgroundColor = '#fff';
       showAlert("light mode activated", "success");
     }
-  } 
+  }
 
   return (
     <div className="App">
-      <Navbar 
-        mode={theme}
-        switchTheme={switchTheme}
-        textMode={text}
-      />
-      <Alert
+      <Navbar mode={theme} switchTheme={switchTheme} textMode={text}></Navbar>
+        <Register mode={theme} switchTheme={switchTheme} textMode={text}></Register>
+
+      {/* <Alert
         alert={alert}
-      />
+      /> */}
       {/* <About></About> */}
 
-      <TextForm
+      {/* <TextForm
         mode={theme}
         switchTheme={switchTheme}
         textMode={text}
         showAlert={showAlert}
-      />
+      /> */}
     </div>
   );
 }
