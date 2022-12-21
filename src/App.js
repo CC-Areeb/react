@@ -1,9 +1,12 @@
+import './App.css';
 import React, { useState } from "react";
 import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from './components/Alert';
 import Register from "./components/Register";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
 
 function App() {
 
@@ -37,22 +40,19 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Navbar mode={theme} switchTheme={switchTheme} textMode={text}></Navbar>
-        <Register mode={theme} switchTheme={switchTheme} textMode={text}></Register>
-
-      {/* <Alert
-        alert={alert}
-      /> */}
-      {/* <About></About> */}
-
-      {/* <TextForm
-        mode={theme}
-        switchTheme={switchTheme}
-        textMode={text}
-        showAlert={showAlert}
-      /> */}
-    </div>
+    <>
+      <Navbar mode={theme}></Navbar>
+      <BrowserRouter>
+        <div className="App">
+          <Routes>
+            <Route path="signup" element={<Register mode={theme} />} />
+            <Route path="dashboard" element={<Home mode={theme} />} />
+            <Route path="about" element={<About />} />
+            <Route path="text" element={<TextForm mode={theme} switchTheme={switchTheme} textMode={text} showAlert={showAlert} />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 export default App;

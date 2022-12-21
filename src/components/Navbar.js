@@ -1,51 +1,39 @@
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+
 
 const Navbar = (props) => {
     return (
         <>
-            <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} sticky-top`}>
-                <div className="container-fluid">
-                    <a className={`navbar-brand text-${props.textMode}`} href="/">{props.title}</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationBar" aria-controls="navigationBar" aria-expanded="false" aria-label="Toggle navigationBar">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navigationBar">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className={`nav-link text-${props.textMode}`} aria-current="page" href="/">{props.home}</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className={`nav-link text-${props.textMode}`} href="/">{props.about}</a>
-                            </li>
-                        </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className={`btn btn-outline-${props.textMode} me-2`} type="submit">Search</button>
-                        </form>
-                        <label htmlFor="" className={`text-${props.textMode} fs-3 mx-3`}>🌞</label>
-                        <div className="form-check form-switch mx-4">
-                            <input className="form-check-input fs-3" onClick={props.switchTheme} type="checkbox" role="switch" id="themeSwitch" />
-                            <label className={`form-check-label fs-3 text-${props.textMode}`} htmlFor="">🌑</label>
-                        </div>
+            <div className="mainContainer container ms-0">
+                <div className="">
+                    <div className="sideMenu">
+                        <nav className="nav flex-column">
+                            <a className="navbar-brand ms-4" href="">Comvita - 2.0</a>
+                            <span className="brandBorder"></span>
+                            <div className="ms-4 fs-5">
+                                <a className="nav-link" href="#"><i className="bi bi-speedometer me-2"></i>Dashboard</a>
+                                <a className="nav-link" href="#"><i class="bi bi-diagram-3 me-2"></i>Manage Products</a>
+                                <a className="nav-link" href="#"><i class="bi bi-rocket-takeoff me-2"></i>Manage Codes</a>
+                                <a className="nav-link" href=""><i class="bi bi-search me-2"></i>Manage Code Search</a>
+                                <a className="nav-link" href=""><i class="bi bi-archive me-2"></i>Disable Codes</a>
+                                <a className="nav-link" href=""><i class="bi bi-tags me-2"></i>Manage Labels</a>
+                                <a className="nav-link" href=""><i class="bi bi-briefcase me-2"></i>Manage Batches</a>
+                                <a className="nav-link" href=""><i class="bi bi-people me-2"></i>Manage Users</a>
+                                <a className="nav-link" href=""><i class="bi bi-list-ul me-2"></i>Manage Roles</a>
+                                <a className="nav-link" href=""><i class="bi bi-list-check me-2"></i>Manage Categories</a>
+                                <a className="nav-link" href=""><i class="bi bi-person-vcard me-2"></i>Manage Beekeepers</a>
+                                <a className="nav-link" href=""><i class="bi bi-map me-2"></i>Manage Regions</a>
+                                <a className="nav-link" href=""><i class="bi bi-envelope-at me-2"></i>Manage Emails</a>
+                                <a className="nav-link" href=""><i class="bi bi-envelope-x me-2"></i>Invalid Codes</a>
+                                <a className="nav-link" href=""><i class="bi bi-file-earmark me-2"></i>Reports</a>
+                                <a className="nav-link" href=""><i class="bi bi-sliders me-2"></i>Manage Site Settings</a>
+                                <a className="nav-link" href="#"><i class="bi bi-door-open-fill me-2"></i>Logout</a>
+                            </div>
+                        </nav>
                     </div>
                 </div>
-            </nav>
+            </div>
         </>
     );
 }
-
-// Define the type of value passed and if they are required or not 
-Navbar.propTypes = {
-    title: PropTypes.string.isRequired,
-    home: PropTypes.string.isRequired,
-    about: PropTypes.string.isRequired
-}
-
-// Use this if there are no values passed  
-Navbar.defaultProps = {
-    title: 'Text Utilities',
-    home: 'Home',
-    about: 'About'
-}
-
 export default Navbar;

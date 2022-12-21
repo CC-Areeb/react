@@ -1,0 +1,28 @@
+.mainContainer
+{
+    height: 100vh;
+    background-color: whitesmoke;
+    width: 16%;
+}
+
+.sideMenu
+{
+    width: 100%;
+}
+
+.sideMenu a
+{
+    text-decoration: none;
+    color: darkslategray;
+}
+
+.sideMenu a:hover
+{
+    color: #b58a51;
+}
+
+.brandBorder
+{
+    border-bottom: 1px solid darkgray;
+    width: 100%;
+}

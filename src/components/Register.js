@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+// import { useHistory } from 'react-router-dom'
 
 export default function Register(props) {
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    // const history = useHistory();
 
     const userName = (event) => {
         let value = event.target.value;
@@ -26,9 +28,20 @@ export default function Register(props) {
         "marginLeft": "25%",
     }
 
-    const signUp = (event) => {
+    async function signUp(event) {
         event.preventDefault();
-        let credentials = {name, email, password}
+        let credentials = { name, email, password }
+        let result = await fetch("http://127.0.0.1:8000/api/signup", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/vnd.api+json',
+                'Accept': 'application/vnd.api+json'
+            },
+            body: JSON.stringify(credentials)
+        });
+        result = await result.json();
+        localStorage.setItem("user-info", JSON.stringify(result));
+        // history.push("/add");
     }
 
     return (
@@ -63,6 +76,5 @@ export default function Register(props) {
                 </div>
             </div>
         </>
-
     )
 }
